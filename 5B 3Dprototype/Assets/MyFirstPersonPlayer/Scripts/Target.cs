@@ -10,6 +10,9 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public float health = 50f;
+
+    //bool for whether this script is attached to an enemy's head
+    public bool isHead = false;
     
     public void TakeDamage(float amount)
     {
@@ -22,6 +25,13 @@ public class Target : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        if (isHead)
+        {
+            Destroy(transform.parent.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
